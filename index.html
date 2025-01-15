@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Secure Password Manager</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
-    <title>Password Manager</title>
+    <meta name="theme-color" content="#28a745">
 </head>
 <body>
     <header>
-        <h1>Password Manager</h1>
+        <h1>Secure Password Manager</h1>
     </header>
     <main>
         <section>
@@ -18,18 +19,27 @@
         </section>
         <section>
             <h2>Add New Password</h2>
-            <form id="password-form">
-                <label for="url">URL:</label>
-                <input type="text" id="url" placeholder="https://example.com" required>
-                <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Username" required>
+            <form id="add-password-form">
+                <label for="site-url">Website URL:</label>
+                <input type="text" id="site-url" placeholder="https://example.com" required>
+                <label for="login-name">Login Name:</label>
+                <input type="text" id="login-name" placeholder="Username" required>
                 <label for="password">Password:</label>
-                <input type="text" id="password" placeholder="Password" required>
-                <button type="submit">Save</button>
-                <button type="button" id="generate">Generate Password</button>
+                <input type="password" id="password" placeholder="Password" required>
+                <label for="password-length">Password Length:</label>
+                <input type="number" id="password-length" min="8" max="32" value="12">
+                <button type="button" id="generate-password">Generate Password</button>
+                <button type="submit">Add Password</button>
             </form>
         </section>
     </main>
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(() => console.log('Service Worker Registered'))
+                .catch(error => console.error('Service Worker Registration Failed:', error));
+        }
+    </script>
 </body>
 </html>
